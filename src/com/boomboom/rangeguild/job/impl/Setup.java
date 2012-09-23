@@ -12,6 +12,8 @@ import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.bot.Context;
 
+import javax.swing.*;
+
 public class Setup extends Node {
 
     private String status = "Initializing...";
@@ -26,15 +28,19 @@ public class Setup extends Node {
 
     @Override
     public String status() {
-        Context.get().getScriptHandler().shutdown();
         return status;
     }
 
     @Override
     public void execute() {
         if (gui == null) {
-            gui = new BBRangeGuildGUI();
-            gui.setVisible(true);
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    gui = new BBRangeGuildGUI();
+                    gui.setVisible(true);
+                }
+            });
 
             if (!Widgets.get(548, 201).visible()) {
                 if (Widgets.get(548, 202).click(true)) {
