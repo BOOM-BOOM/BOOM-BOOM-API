@@ -19,7 +19,7 @@ import java.awt.*;
 public class Shoot extends Node {
 
     private String status = "Initializing...";
-    private boolean isSpamClicking;
+    private final boolean isSpamClicking;
     private static final Tile TARGET_TILE = new Tile(2679, 3426, 0);
     private static final Tile SPOT = new Tile(2670, 3418, 0);
     private static int fails;

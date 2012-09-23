@@ -16,7 +16,7 @@ public class Exchange extends Node {
      */
     public class ExchangeItem {
 
-        private int childId, value, itemId;
+        private final int childId, value, itemId;
 
         public ExchangeItem (final int childId, final int value, final int itemId) {
             this.childId = childId;
@@ -39,8 +39,8 @@ public class Exchange extends Node {
     }
 
     private String status = "Initializing...";
-    private int amount;
-    private ExchangeItem[] items = {
+    private final int amount;
+    private final ExchangeItem[] items = {
             new ExchangeItem(0, 114, 47),
             new ExchangeItem(2, 1020, 892),
             new ExchangeItem(5, 292, 829)

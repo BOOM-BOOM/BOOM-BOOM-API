@@ -87,7 +87,7 @@ public class Setup extends Node {
                 if (gui.isAntiban())
                     Main.getJobs().getNodes().add(new Antiban(gui.isSkillAntiban(), gui.isMouseAntiban(), gui.isAfkMode()));
 
-                Main.getJobs().getNodes().add(new Equip(gui.isEquipingArrows()));
+                Main.getJobs().getNodes().add(new Equip(gui.isEquippingArrows()));
                 Main.getJobs().getNodes().add(new Compete());
                 Main.getJobs().getNodes().add(new Shoot(gui.isSpamClicking()));
             } else {

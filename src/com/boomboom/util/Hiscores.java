@@ -11,7 +11,7 @@ import java.net.URL;
  */
 public class Hiscores {
 
-    private String name, skillInfo;
+    private final String name, skillInfo;
     private static final String WEBSITE = "http://hiscore.runescape.com/index_lite.ws?player=";
     private static final String[] SKILLS = { "Overall", "Attack", "Defence", "Strength", "Constitution",
             "Ranged", "Prayer", "Magic", "Cooking", "WoodCutting",
@@ -30,7 +30,7 @@ public class Hiscores {
             final StringBuilder builder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null)
-                builder.append(line + ":");
+                builder.append(line).append(":");
             return new Hiscores(name, builder.toString());
         } catch (IOException e) {
             e.printStackTrace();

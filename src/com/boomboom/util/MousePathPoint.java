@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class MousePathPoint extends Point {
 
-    private long finishTime;
+    private final long finishTime;
     private double lastingTime;
 
     private int toColor(double d) {

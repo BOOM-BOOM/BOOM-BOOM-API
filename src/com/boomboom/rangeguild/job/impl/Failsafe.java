@@ -8,7 +8,7 @@ import org.powerbot.game.api.util.Random;
 public class Failsafe extends Node {
 
     private String status = "Initializing...";
-    private boolean resizeable;
+    private final boolean resizeable;
 
     public Failsafe(final boolean resizeable) {
         this.resizeable = resizeable;

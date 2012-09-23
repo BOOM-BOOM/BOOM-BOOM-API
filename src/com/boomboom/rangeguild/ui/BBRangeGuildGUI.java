@@ -286,7 +286,7 @@ public class BBRangeGuildGUI extends JFrame {
         return spamClick;
     }
 
-    public boolean isEquipingArrows() {
+    public boolean isEquippingArrows() {
         return equipArrows;
     }
 

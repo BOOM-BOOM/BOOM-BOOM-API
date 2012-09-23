@@ -10,8 +10,8 @@ import org.powerbot.game.api.util.Timer;
 public class Antiban extends Node {
 
     private String status = "Initializing...";
-    private Timer timer = new Timer(0);
-    private boolean mouseAnti, skillAnti, afkMode;
+    private final Timer timer = new Timer(0);
+    private final boolean mouseAnti, skillAnti, afkMode;
 
     public Antiban (final boolean mouseAnti, final boolean skillAnti, final boolean afkMode) {
         this.mouseAnti = mouseAnti;

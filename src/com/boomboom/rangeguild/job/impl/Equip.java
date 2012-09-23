@@ -10,7 +10,7 @@ import org.powerbot.game.bot.Context;
 public class Equip extends Node {
 
     private String status = "Initializing...";
-    private boolean isEquippingArrows;
+    private final boolean isEquippingArrows;
 
     public Equip (final boolean isEquippingArrows) {
         this.isEquippingArrows = isEquippingArrows;
