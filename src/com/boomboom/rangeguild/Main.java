@@ -8,6 +8,7 @@ import com.boomboom.util.SkillData;
 import com.boomboom.util.Util;
 import org.powerbot.core.event.listeners.PaintListener;
 import org.powerbot.core.script.ActiveScript;
+import org.powerbot.core.script.job.Task;
 import org.powerbot.game.api.Manifest;
 import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.input.Mouse;
@@ -52,7 +53,12 @@ public class Main extends ActiveScript implements PaintListener {
     public int loop() {
         if (jobs == null) {
             jobs = new Tree(new Node[] { new Setup()});
-            paintBar = Util.getImage("paint_bar.png", "http://puu.sh/17VqH.png", "png");
+            getContainer().submit(new Task() {
+                @Override
+                public void execute() {
+                    paintBar = Util.getImage("paint_bar.png", "http://puu.sh/17VqH.png", "png");
+                }
+            });
         }
 
         final Node job = jobs.state();
@@ -89,19 +95,12 @@ public class Main extends ActiveScript implements PaintListener {
             g.setColor(PAINT_TEXT_COLOR1);
             g.drawString("Time Running: " + (skillData != null ? Util.format(skillData.getTimer().getElapsed(), true) : "Initializing..."), 10, 18);
 
-            drawInfoBox(g, 10, 26, 222, 17);
-            g.setFont(ARIAL_11_BOLD);
-            g.setColor(WHITE);
-
             String status = null;
             if (jobs.get() != null)
                 status = jobs.get().status();
-            g.drawString("Status: " + (status != null ? status : "Null..."), 18, 38);
+            drawInfoBox(g, 10, 26, 222, 17, "Status: " + (status != null ? status : "Null..."));
 
-            drawInfoBox(g, 238, 26, 88, 17);
-            g.setFont(ARIAL_11_BOLD);
-            g.setColor(WHITE);
-            g.drawString("Version: " + format.format(version), 246, 38);
+            drawInfoBox(g, 238, 26, 88, 17, "Version: " + format.format(version));
 
             int percent = 0;
             if (skillData != null)
@@ -127,13 +126,16 @@ public class Main extends ActiveScript implements PaintListener {
         }
     }
 
-    private void drawInfoBox(final Graphics g, final int x, final int y, final int width, final int height) {
+    private void drawInfoBox(final Graphics g, final int x, final int y, final int width, final int height, final String info) {
         g.setColor(BACKGROUND);
         g.fillRect(x, y, width, height);
         g.setColor(BACKGROUND2);
         g.fillRect(x + 1, y + 1, width - 2, height - 2);
         g.setColor(FOREGROUND);
         g.fillRect(x + 2, y + 2, width - 4, height - 4);
+        g.setFont(ARIAL_11_BOLD);
+        g.setColor(WHITE);
+        g.drawString(info, x + 6, y + 12);
     }
 
     private void drawMouse(final Graphics g) {

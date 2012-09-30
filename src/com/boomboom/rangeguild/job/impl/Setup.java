@@ -37,8 +37,7 @@ public class Setup extends Node {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    gui = new BBRangeGuildGUI();
-                    gui.setVisible(true);
+                    gui = BBRangeGuildGUI.create();
                 }
             });
 
@@ -73,9 +72,13 @@ public class Setup extends Node {
                     }
                     Tabs.INVENTORY.open();
                 }
+
+                while (Context.get().getScriptHandler().isActive() && (gui == null || !gui.isVisible()))
+                    sleep(100);
             } else if (Widgets.get(548, 201).visible() && money == null) {
                 Context.get().getScriptHandler().log.info("You do not have any coins with you.");
                 status = "Shutting down...";
+                gui.dispose();
                 Context.get().getScriptHandler().shutdown();
             }
         } else if (gui.isVisible() && gui.isRunning()) {

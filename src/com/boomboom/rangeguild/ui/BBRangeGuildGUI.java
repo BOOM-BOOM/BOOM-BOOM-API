@@ -8,22 +8,22 @@ import java.awt.event.ActionListener;
 
 public class BBRangeGuildGUI extends JFrame {
 
-    private JToggleButton competeButton;
-    private JToggleButton exchangeButton;
+    private JToggleButton competeButton, exchangeButton;
     private JPanel competePane;
-    private JCheckBox spamClickBox;
-    private JCheckBox equipArrowsBox;
+    private JCheckBox spamClickBox,  equipArrowsBox;
     private JRadioButton antibanButton;
-    private JCheckBox mouseAntibanBox;
-    private JCheckBox skillAntibanBox;
-    private JCheckBox afkModeBox;
+    private JCheckBox mouseAntibanBox, skillAntibanBox, afkModeBox;
     private JPanel exchangePane;
     private JComboBox<String> itemExchange;
     private JTextField amountBox;
     private boolean isRunning = true, compete, spamClick, equipArrows, antiban, mouseAnti, skillAnti, afkMode;
     private int exchangeIndex, amount;
 
-    public BBRangeGuildGUI() {
+    public static BBRangeGuildGUI create() {
+        return new BBRangeGuildGUI();
+    }
+
+    private BBRangeGuildGUI() {
         initComponents();
     }
 
@@ -264,6 +264,7 @@ public class BBRangeGuildGUI extends JFrame {
             });
 
             pack();
+            setVisible(true);
             setLocationRelativeTo(getOwner());
         }
 
