@@ -23,7 +23,7 @@ import java.util.LinkedList;
 
 @Manifest(name = "BBRangeGuild",
         authors = "BOOM BOOM",
-        version = 1.04D,
+        version = 1.052D,
         description = "The ultimate Range Guild script! Over a year in experience!",
         website = "https://www.powerbot.org/community/topic/679291-bbrangeguild-over-a-year-in-range-guilding-experience/",
         topic = 679291)
@@ -31,6 +31,7 @@ public class Main extends ActiveScript implements PaintListener {
 
     private static Tree jobs;
     private static SkillData skillData;
+    private static int buttonId, coinsId;
 
     private BufferedImage paintBar;
     private final double version = Main.class.getAnnotation(Manifest.class).version();
@@ -47,6 +48,22 @@ public class Main extends ActiveScript implements PaintListener {
 
     public static void setSkillData(final SkillData skillData) {
         Main.skillData = skillData;
+    }
+
+    public static int getButtonId() {
+        return buttonId;
+    }
+
+    public static void setButtonId(final int buttonId) {
+        Main.buttonId = buttonId;
+    }
+
+    public static int getCoinsId() {
+        return coinsId;
+    }
+
+    public static void setCoinsId(final int coinsId) {
+        Main.coinsId = coinsId;
     }
 
     @Override

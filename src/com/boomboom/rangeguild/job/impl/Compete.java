@@ -1,5 +1,6 @@
 package com.boomboom.rangeguild.job.impl;
 
+import com.boomboom.rangeguild.Main;
 import com.boomboom.rangeguild.job.Node;
 import com.boomboom.util.Util;
 import org.powerbot.game.api.methods.Game;
@@ -17,7 +18,7 @@ public class Compete extends Node {
 
     @Override
     public boolean activate() {
-        return Game.isLoggedIn() && Settings.get(156) == 0 || Widgets.get(1184, 0).visible() || Widgets.get(1188, 3).visible();
+        return Game.isLoggedIn() && (Settings.get(156) == 0 || Widgets.get(1184, 0).visible() || Widgets.get(1188, 3).visible());
     }
 
     @Override
@@ -28,8 +29,8 @@ public class Compete extends Node {
     @Override
     public void execute() {
         String money;
-        if (Inventory.getCount(true, 995) > 200 || Widgets.get(548, 201).visible() &&
-                (money = Widgets.get(548, 201).getText()) != null && Util.parseMultiplier(money) > 200) {
+        if (Inventory.getCount(true, 995) > 200 || Widgets.get(548, Main.getCoinsId()).visible() &&
+                (money = Widgets.get(548, Main.getCoinsId()).getText()) != null && Util.parseMultiplier(money) > 200) {
             if (!Widgets.get(1188, 3).visible()) {
                 status = "Talking to Judge...";
                 final NPC judge = NPCs.getNearest(693);
@@ -52,9 +53,9 @@ public class Compete extends Node {
                         sleep(100);
                 }
             }
-        } else if (!Widgets.get(548, 201).visible()) {
-            if (Widgets.get(548, 202).click(true)) {
-                for (int i = 0; i < 20 && !Widgets.get(548, 201).visible(); i++)
+        } else if (!Widgets.get(548, Main.getCoinsId()).visible()) {
+            if (Widgets.get(548, Main.getButtonId()).click(true)) {
+                for (int i = 0; i < 20 && !Widgets.get(548, Main.getCoinsId()).visible(); i++)
                     sleep(100);
             }
         } else {
