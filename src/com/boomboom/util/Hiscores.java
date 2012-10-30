@@ -13,7 +13,7 @@ public class Hiscores {
 
     private final String name, skillInfo;
     private static final String WEBSITE = "http://hiscore.runescape.com/index_lite.ws?player=";
-    private static final String[] SKILLS = { "Overall", "Attack", "Defence", "Strength", "Constitution",
+    public static final String[] SKILLS = { "Overall", "Attack", "Defence", "Strength", "Constitution",
             "Ranged", "Prayer", "Magic", "Cooking", "WoodCutting",
             "Fletching", "Fishing", "Firemaking", "Crafting", "Smithing",
             "Mining", "Herblore", "Agility", "Thieving", "Slayer",
@@ -32,8 +32,7 @@ public class Hiscores {
             while ((line = reader.readLine()) != null)
                 builder.append(line).append(":");
             return new Hiscores(name, builder.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         return null;
     }

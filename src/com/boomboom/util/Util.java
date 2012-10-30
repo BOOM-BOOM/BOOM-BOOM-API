@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.NumberFormat;
 
 public class Util {
 
@@ -41,6 +42,10 @@ public class Util {
             output += ((mins < 10 ? "0" : "") + mins + " Minute" + (mins != 1 ? "s " : " "));
         output += ((secs < 10 ? "0" : "") + secs + " Second" + (secs != 1 ? "s" : ""));
         return output;
+    }
+
+    public static String formatCommas(final int i) {
+        return NumberFormat.getIntegerInstance().format(i);
     }
 
     public static int parseMultiplier(String value) {
