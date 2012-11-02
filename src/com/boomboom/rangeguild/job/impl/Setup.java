@@ -3,6 +3,8 @@ package com.boomboom.rangeguild.job.impl;
 import com.boomboom.rangeguild.Main;
 import com.boomboom.rangeguild.job.Node;
 import com.boomboom.rangeguild.ui.BBRangeGuildGUI;
+import com.boomboom.rangeguild.ui.BBStatistics;
+import com.boomboom.rangeguild.ui.StatisticsHandler;
 import com.boomboom.util.SkillData;
 import com.boomboom.util.Util;
 import org.powerbot.game.api.methods.Game;
@@ -16,6 +18,8 @@ import org.powerbot.game.bot.Context;
 import javax.swing.*;
 
 public class Setup extends Node {
+
+    private static BBStatistics statistics;
 
     private String status = "Initializing...";
     private boolean resizeable, launched;
@@ -46,8 +50,10 @@ public class Setup extends Node {
             });
 
             final Widget widget = Widgets.get(548);
-            for (int i = 0; i < widget.getChildren().length; i++) {
-                if (widget.getChild(i).getTextColor() == 16776960) {
+            final int size = widget.getChildren().length;
+            for (int i = 0; i < size; i++) {
+                if (widget.getChild(i).getAbsoluteLocation().getX() == 460 && (widget.getChild(i).getTextColor() == 65408
+                        || widget.getChild(i).getTextColor() == 16777215 || widget.getChild(i).getTextColor() == 16776960)) {
                     Main.setCoinsId(i);
                 }
 
@@ -133,8 +139,20 @@ public class Setup extends Node {
                 }
 
                 Main.setSkillData(new SkillData());
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        statistics = new BBStatistics();
+                    }
+                });
+                getContainer().submit(new StatisticsHandler());
             }
         }
+    }
+
+    public static BBStatistics getStatistics() {
+        return statistics;
     }
 
 }
