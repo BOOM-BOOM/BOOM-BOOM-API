@@ -1,6 +1,7 @@
 package com.boomboom.rangeguild.job.impl;
 
 import com.boomboom.rangeguild.job.Node;
+import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.methods.widget.Camera;
 import org.powerbot.game.api.util.Random;
@@ -17,7 +18,7 @@ public class Failsafe extends Node {
     @Override
     public boolean activate() {
         final int yaw = Camera.getYaw();
-        return Camera.getPitch() > (resizeable ? 54 : 40) || (yaw <= 318 && yaw >= 302) || yaw <= 258 || yaw >= 358 || Widgets.get(594, 0).visible();
+        return Game.isLoggedIn() && (Camera.getPitch() > (resizeable ? 54 : 40) || (yaw <= 318 && yaw >= 302) || yaw <= 258 || yaw >= 358 || Widgets.get(594, 0).visible());
     }
 
     @Override
